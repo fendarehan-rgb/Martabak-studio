@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Admin Panel | Martabak Studio</title>
+  <link rel="icon" href="../assets/favicon.png">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="admin.css">
+  <script src="../js/config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.8/dist/umd/supabase.min.js"></script>
+  <script src="../js/admin.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap bar">
+      <a class="brand" href="../index.html">Martabak Studio</a>
+      <span class="small muted">Admin</span>
+    </div>
+  </header>
+
+  <main id="konten">
+    <div class="wrap">
+      <h1>Admin Panel</h1>
+      <p id="status" class="small" role="status"></p>
+
+      <section id="view-login" hidden>
+        <h2>Login</h2>
+        <form id="form-login">
+          <div class="field">
+            <label for="login-email">Email</label>
+            <input id="login-email" type="email" autocomplete="username" required>
+          </div>
+          <div class="field">
+            <label for="login-password">Password</label>
+            <input id="login-password" type="password" autocomplete="current-password" required>
+          </div>
+          <button class="btn btn-primary" type="submit">Masuk</button>
+        </form>
+      </section>
+
+      <section id="view-enroll" hidden>
+        <h2>Daftarkan authenticator</h2>
+        <p>Pindai QR code ini dengan aplikasi authenticator, lalu masukkan kode 6 digit yang muncul.</p>
+        <img id="enroll-qr" class="qr" width="200" height="200" alt="QR code untuk aktivasi MFA">
+        <p class="small">Atau masukkan kunci ini secara manual: <code id="enroll-secret" class="secret"></code></p>
+        <form id="form-enroll">
+          <div class="field">
+            <label for="enroll-code">Kode 6 digit</label>
+            <input id="enroll-code" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" required>
+          </div>
+          <button class="btn btn-primary" type="submit">Aktifkan</button>
+        </form>
+      </section>
+
+      <section id="view-verify" hidden>
+        <h2>Verifikasi MFA</h2>
+        <form id="form-verify">
+          <div class="field">
+            <label for="verify-code">Kode 6 digit dari authenticator</label>
+            <input id="verify-code" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" required>
+          </div>
+          <button class="btn btn-primary" type="submit">Verifikasi</button>
+        </form>
+      </section>
+
+      <section id="view-dashboard" hidden>
+        <p class="small muted">Login sebagai <strong id="admin-email"></strong></p>
+        <h2>Ringkasan konten</h2>
+        <dl class="facts">
+          <div><dt>Game</dt><dd id="count-games">–</dd></div>
+          <div><dt>Berita</dt><dd id="count-news">–</dd></div>
+          <div><dt>Changelog</dt><dd id="count-changelog">–</dd></div>
+          <div><dt>Link download</dt><dd id="count-downloads">–</dd></div>
+        </dl>
+        <p class="small muted">Form pengelolaan konten akan ditambahkan di tahap berikutnya.</p>
+        <button id="btn-logout" class="btn" type="button">Keluar</button>
+      </section>
+    </div>
+  </main>
+</body>
+</html>
